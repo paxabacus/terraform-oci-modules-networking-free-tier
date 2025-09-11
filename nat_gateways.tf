@@ -6,7 +6,7 @@
 # Last Modified: Wed Nov 15 2023                                                                          #
 # Modified by: Cosmin Tudor, email: cosmin.tudor@oracle.com                                               #
 # ####################################################################################################### #
-
+/*
 locals {
   one_dimension_processed_nat_gateways = local.one_dimension_processed_vcn_specific_gateways != null ? {
     for flat_natgw in flatten([
@@ -126,3 +126,4 @@ resource "oci_core_nat_gateway" "these" {
   )[each.value.route_table_key].id : null
 }
 
+*/

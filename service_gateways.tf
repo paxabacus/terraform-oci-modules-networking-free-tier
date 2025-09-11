@@ -6,7 +6,7 @@
 # Last Modified: Tue Dec 19 2023                                                                          #
 # Modified by: Cosmin Tudor, email: cosmin.tudor@oracle.com                                               #
 # ####################################################################################################### #
-
+/*
 data "oci_core_services" "oci_services" {
   count = var.network_configuration != null ? 1 : 0
 }
@@ -141,3 +141,4 @@ resource "oci_core_service_gateway" "these" {
     }
   )[each.value.route_table_key].id : null
 }
+*/
