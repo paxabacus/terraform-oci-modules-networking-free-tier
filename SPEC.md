@@ -44,7 +44,7 @@
 | [oci_core_ipsec_connection_tunnel_management.these](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_ipsec_connection_tunnel_management) | resource |
 | [oci_core_local_peering_gateway.oci_acceptor_local_peering_gateways](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_local_peering_gateway) | resource |
 | [oci_core_local_peering_gateway.oci_requestor_local_peering_gateways](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_local_peering_gateway) | resource |
-# | [oci_core_nat_gateway.these](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_nat_gateway) | resource |
+<!-- # | [oci_core_nat_gateway.these](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_nat_gateway) | resource | -->
 | [oci_core_network_security_group.these](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_network_security_group) | resource |
 | [oci_core_network_security_group_security_rule.egress](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_network_security_group_security_rule) | resource |
 | [oci_core_network_security_group_security_rule.ingress](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_network_security_group_security_rule) | resource |
@@ -59,7 +59,7 @@
 | [oci_core_route_table.sgw_specific_route_tables](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_route_table) | resource |
 | [oci_core_route_table_attachment.these](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_route_table_attachment) | resource |
 | [oci_core_security_list.these](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_security_list) | resource |
-# | [oci_core_service_gateway.these](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_service_gateway) | resource |
+<!-- # | [oci_core_service_gateway.these](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_service_gateway) | resource | -->
 | [oci_core_subnet.these](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_subnet) | resource |
 | [oci_core_vcn.these](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_vcn) | resource |
 | [oci_core_virtual_circuit.these](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_virtual_circuit) | resource |
