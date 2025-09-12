@@ -140,5 +140,5 @@ resource "oci_core_service_gateway" "these" {
       }
     }
   )[each.value.route_table_key].id : null
+  */
 }
-*/
