@@ -6,7 +6,7 @@
 # Last Modified: Tue Dec 19 2023                                                                          #
 # Modified by: Cosmin Tudor, email: cosmin.tudor@oracle.com                                               #
 # ####################################################################################################### #
-/*
+
 data "oci_core_services" "oci_services" {
   count = var.network_configuration != null ? 1 : 0
 }
@@ -108,37 +108,37 @@ locals {
   }
 }
 
-resource "oci_core_service_gateway" "these" {
+# resource "oci_core_service_gateway" "these" {
 
-  for_each = local.merged_one_dimension_processed_service_gateways
-  #Required
-  compartment_id = each.value.compartment_id != null ? (length(regexall("^ocid1.*$", each.value.compartment_id)) > 0 ? each.value.compartment_id : var.compartments_dependency[each.value.compartment_id].id) : null
-  services {
-    service_id = each.value.services_key
-  }
-  vcn_id = each.value.vcn_id
+#   for_each = local.merged_one_dimension_processed_service_gateways
+#   #Required
+#   compartment_id = each.value.compartment_id != null ? (length(regexall("^ocid1.*$", each.value.compartment_id)) > 0 ? each.value.compartment_id : var.compartments_dependency[each.value.compartment_id].id) : null
+#   services {
+#     service_id = each.value.services_key
+#   }
+#   vcn_id = each.value.vcn_id
 
-  #Optional
-  defined_tags  = each.value.defined_tags
-  display_name  = each.value.display_name
-  freeform_tags = merge(local.cislz_module_tag, each.value.freeform_tags)
-  // Searching for the id based on the key in the:
-  //       - IGW and NAT GW specific route tables: local.provisioned_igw_natgw_specific_route_tables
-  //       - SGW specific route tables: local.provisioned_sgw_specific_route_tables + the default route table
-  route_table_id = each.value.route_table_id != null ? each.value.route_table_id : each.value.route_table_key != null ? merge(
-    {
-      for rt_key, rt_value in merge(
-        local.provisioned_igw_natgw_specific_route_tables,
-        local.provisioned_sgw_specific_route_tables
-        ) : rt_key => {
-        id = rt_value.id
-      }
-    },
-    {
-      "default_route_table" = {
-        id = oci_core_vcn.these[each.value.vcn_key].default_route_table_id
-      }
-    }
-  )[each.value.route_table_key].id : null
-  */
-}
+#   #Optional
+#   defined_tags  = each.value.defined_tags
+#   display_name  = each.value.display_name
+#   freeform_tags = merge(local.cislz_module_tag, each.value.freeform_tags)
+#   // Searching for the id based on the key in the:
+#   //       - IGW and NAT GW specific route tables: local.provisioned_igw_natgw_specific_route_tables
+#   //       - SGW specific route tables: local.provisioned_sgw_specific_route_tables + the default route table
+#   route_table_id = each.value.route_table_id != null ? each.value.route_table_id : each.value.route_table_key != null ? merge(
+#     {
+#       for rt_key, rt_value in merge(
+#         local.provisioned_igw_natgw_specific_route_tables,
+#         local.provisioned_sgw_specific_route_tables
+#         ) : rt_key => {
+#         id = rt_value.id
+#       }
+#     },
+#     {
+#       "default_route_table" = {
+#         id = oci_core_vcn.these[each.value.vcn_key].default_route_table_id
+#       }
+#     }
+#   )[each.value.route_table_key].id : null
+  
+# }

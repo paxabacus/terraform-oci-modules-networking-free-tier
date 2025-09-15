@@ -6,7 +6,7 @@
 # Last Modified: Wed Nov 15 2023                                                                          #
 # Modified by: Cosmin Tudor, email: cosmin.tudor@oracle.com                                               #
 # ####################################################################################################### #
-/*
+
 locals {
   one_dimension_processed_nat_gateways = local.one_dimension_processed_vcn_specific_gateways != null ? {
     for flat_natgw in flatten([
@@ -98,32 +98,31 @@ locals {
 }
 
 
-resource "oci_core_nat_gateway" "these" {
-  for_each = local.merged_one_dimension_processed_nat_gateways
-  #Required
-  compartment_id = each.value.compartment_id != null ? (length(regexall("^ocid1.*$", each.value.compartment_id)) > 0 ? each.value.compartment_id : var.compartments_dependency[each.value.compartment_id].id) : null
-  vcn_id         = each.value.vcn_id
+# resource "oci_core_nat_gateway" "these" {
+#   for_each = local.merged_one_dimension_processed_nat_gateways
+#   #Required
+#   compartment_id = each.value.compartment_id != null ? (length(regexall("^ocid1.*$", each.value.compartment_id)) > 0 ? each.value.compartment_id : var.compartments_dependency[each.value.compartment_id].id) : null
+#   vcn_id         = each.value.vcn_id
 
-  #Optional
-  block_traffic = each.value.block_traffic
-  defined_tags  = each.value.defined_tags
-  display_name  = each.value.display_name
-  freeform_tags = merge(local.cislz_module_tag, each.value.freeform_tags)
-  public_ip_id  = each.value.public_ip_id
-  // Searching for the id based on the key in the:
-  //       - IGW and NAT GW specific route tables: local.provisioned_igw_natgw_specific_route_tables + the default route table
-  route_table_id = each.value.route_table_id != null ? each.value.route_table_id : each.value.route_table_key != null ? merge(
-    {
-      for rt_key, rt_value in local.provisioned_igw_natgw_specific_route_tables : rt_key => {
-        id = rt_value.id
-      }
-    },
-    {
-      "default_route_table" = {
-        id = oci_core_vcn.these[each.value.vcn_key].default_route_table_id
-      }
-    }
-  )[each.value.route_table_key].id : null
-}
+#   #Optional
+#   block_traffic = each.value.block_traffic
+#   defined_tags  = each.value.defined_tags
+#   display_name  = each.value.display_name
+#   freeform_tags = merge(local.cislz_module_tag, each.value.freeform_tags)
+#   public_ip_id  = each.value.public_ip_id
+#   // Searching for the id based on the key in the:
+#   //       - IGW and NAT GW specific route tables: local.provisioned_igw_natgw_specific_route_tables + the default route table
+#   route_table_id = each.value.route_table_id != null ? each.value.route_table_id : each.value.route_table_key != null ? merge(
+#     {
+#       for rt_key, rt_value in local.provisioned_igw_natgw_specific_route_tables : rt_key => {
+#         id = rt_value.id
+#       }
+#     },
+#     {
+#       "default_route_table" = {
+#         id = oci_core_vcn.these[each.value.vcn_key].default_route_table_id
+#       }
+#     }
+#   )[each.value.route_table_key].id : null
+# }
 
-*/
